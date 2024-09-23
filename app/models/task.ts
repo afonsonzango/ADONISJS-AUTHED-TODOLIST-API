@@ -14,7 +14,7 @@ export default class Task extends BaseModel {
   declare description: string
   
   @column()
-  declare isCompleted: boolean
+  declare completed: boolean
 
   @column()
   declare user_id: number

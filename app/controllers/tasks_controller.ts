@@ -58,7 +58,7 @@ export default class TasksController {
 
     async UpdateTask({ request, response, auth }: HttpContext) {
         try {
-            const { title, description } = request.body();
+            const { title, description, completed } = request.body();
             const taskId = request.param("id");
 
             const task = await Task.find(taskId);
@@ -72,6 +72,8 @@ export default class TasksController {
 
             task.title = title || task.title;
             task.description = description || task.description;
+            task.completed = completed || task.completed;
+
             await task.save();
 
             return response.ok({
